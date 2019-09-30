@@ -59,6 +59,7 @@ t_RIGHTBRACKET = r'\]'
 # declaration to ignore white space
 t_ignore = ' \t'
 
+# tokens awaiting to be implemented
 # t_BOOLEANCONSTANT = ''
 # t_INTCONSTANT = ''
 # t_DOUBLECONSTANT = ''

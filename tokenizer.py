@@ -56,6 +56,9 @@ t_AND = r'\&&'
 t_NOT = r'\!'
 t_RIGHTBRACKET = r'\]'
 
+# declaration to ignore white space
+t_ignore = ' \t'
+
 # t_BOOLEANCONSTANT = ''
 # t_INTCONSTANT = ''
 # t_DOUBLECONSTANT = ''
@@ -86,7 +89,7 @@ def t_error(t):
 
 
 lexer = lex.lex()
-lexer.input('')
+lexer.input('if { print' )
 while True:
     tok = lexer.token()
     if not tok:

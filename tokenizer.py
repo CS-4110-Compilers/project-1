@@ -1,4 +1,28 @@
+import ply.lex as lex
+import ply.yacc as yacc
+import sys
 
+# reserved word list
+reserved = {
+    'boolean': 'BOOLEAN',
+    'break': 'BREAK',
+    'readln': 'READLN',
+    'println': 'PRINTLN',
+    'if': 'IF',
+    'else': 'ELSE',
+    'class': 'CLASS',
+    'for': 'FOR',
+    'interface': 'INTERFACE',
+    'null': 'NULL',
+    'string': 'STRING',
+    'return': 'RETURN',
+    'while': 'WHILE',
+    'this': 'THIS',
+    'implements': 'IMPLEMENTS',
+    'newarray': 'NEWARRAY',
+    'void': 'VOID',
+    'extends': 'EXTENDS'
+}
 
 tokens = [
     'BOOLEAN', 'ELSE', 'IMPLEMENTS', 'NEWARRAY', 'RETURN', 'WHILE', 'DIVISION', 'GREATER', 'AND', 'SEMICOLON',
@@ -8,7 +32,7 @@ tokens = [
     'VOID', 'MULTIPLICATION', 'LESSEQUAL', 'NOTEQUAL', 'ASSIGNOP', 'LEFTPAREN', 'LEFTBRACE', 'STRINGCONSTANT'
 ]
 
-# tokens
+# token declarations
 t_DIVISION = r'\/'
 t_GREATER = r'\>'
 t_SEMICOLON = r'\;'
@@ -31,45 +55,41 @@ t_PERIOD = r'\.'
 t_AND = r'\&&'
 t_NOT = r'\!'
 t_RIGHTBRACKET = r'\]'
-t_ID = r'[a-zA-Z_][a-zA-Z0-9_]*'
-t_BOOLEANCONSTANT = ''
-t_INTCONSTANT = ''
-t_DOUBLECONSTANT = ''
-t_NEW = ''
-t_ASSIGNOP = ''
-t_STRINGCONSTANT = ''
 
-# reserved words
-t_BOOLEAN = r'\boolean'
-t_BREAK = r'\break'
-t_READLN = r'\readln'
-t_PRINTLN = r'\println'
-t_IF = r'\if'
-t_ELSE = r'\else'
-t_CLASS = r'\class'
-t_FOR = r'\for'
-t_INTERFACE = r'\interface'
-t_NULL = r'\null'
-t_STRING = ''
-t_RETURN = r'\return'
-t_WHILE = r'\while'
-t_THIS = r'\this'
-t_IMPLEMENTS = r'\implements'
-t_NEWARRAY = r'\newarray'
-t_VOID = r'\void'
-t_EXTENDS = r'\extends'
+# t_BOOLEANCONSTANT = ''
+# t_INTCONSTANT = ''
+# t_DOUBLECONSTANT = ''
+# t_NEW = ''
+# t_ASSIGNOP = ''
+# t_STRINGCONSTANT = ''
+
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = reserved.get(t.value, 'ID')  # Check for reserved words
+    return t
 
 def t_DOUBLE(t):
     r'\d\.\d+'
     t.value = float(t)
     return t
 
+
 def t_INT(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
+
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
+
+lexer = lex.lex()
+lexer.input('')
+while True:
+    tok = lexer.token()
+    if not tok:
+        break
+    else:
+        print(tok)

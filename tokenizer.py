@@ -63,8 +63,11 @@ t_STRINGCONSTANT = r'\"[a-zA-Z_][a-zA-Z_0-9]*\"'
 
 # declaration to ignore white space
 t_ignore = ' \t'
+
 # declaration to ignore comments
-t_ignore_COMMENT = r'\//'
+t_ignore_COMMENT = r'\//.*'
+
+
 
 # tokens awaiting to be implemented
 # t_ASSIGNOP = ''
@@ -94,7 +97,7 @@ def t_error(t):
 
 
 lexer = lex.lex() # parser instance to test input
-lexer.input('//')
+lexer.input('// hello')
 while True:
     tok = lexer.token()
     if not tok:

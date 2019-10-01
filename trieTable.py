@@ -1,4 +1,4 @@
-
+#TrieTable class to store identifiers.
 class TrieTable:
     
     maxTransitions = 25
@@ -11,31 +11,32 @@ class TrieTable:
     #tracks end of symbol array
     symbolPtr = 0
     
-    #function to print formatted TrieTable
-    #-1 in switch and next represents undefined element
-    #* in symbol represents undefined element
+    #Function to print the formatted TrieTable.
+    #-1 in switch and next represents undefined element.
+    #* in symbol represents undefined element.
     def printTrie(self):
         
-        letters = "  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z  a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z"
+        capLetters = "  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z"  
+        lowLetters = " a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z"
         letterIndex = ""
         index = ""
         sw = ""
         sym = ""
         nxt = ""
         
+        #format strings of table rows
         for i in range(len(self.switch)): 
-            sw += "{:3d}".format(self.switch[i])
-            
-        print("") 
-        print("        ",letters)
-        print("switch: ",sw)
-        print()
-        
+            sw += "{:3d}".format(self.switch[i])     
         for i in range(len(self.symbol)): 
             index += "{:3d}".format(i)
             sym += "{:3c}".format(ord(self.symbol[i]))
-            nxt += "{:3d}".format(self.nextArr[i]) 
+            nxt += "{:3d}".format(self.nextArr[i])
             
+        #print formatted strings
+        print("") 
+        print("        ",capLetters,lowLetters)
+        print("switch: ",sw)
+        print() 
         print("        ",index)
         print("symbol: ",sym)
         print("next:   ",index)
@@ -49,8 +50,8 @@ class TrieTable:
         self.nextArr = self.nextArr + temp2
         self.maxTransitions = self.maxTransitions * 2
 
-    #funtion that returns the index of the corresponding letter in the switch array
-    #if not in switch, then it returns -1
+    #Funtion that returns the index of the corresponding letter in the switch array.
+    #If not in the switch, then it returns -1.
     def switchIndexOfSymbol(self,c):
         asciiValue = ord(c)
         if(asciiValue > 64 and asciiValue < 91):
@@ -96,6 +97,8 @@ class TrieTable:
             ptr = self.symbolPtr
             i = self.symbolPtr
             x = 0
+            
+            #while not at the last symbol
             while((ptr-i) != len(identifier)):
                 self.symbol[ptr] = identifier[x]
                 x += 1
@@ -178,6 +181,7 @@ class TrieTable:
                         nextIndexValue = ptr+1
                         while(self.nextArr[nextIndexValue] != -1): 
                             nextIndexValue = self.nextArr[nextIndexValue]
+                        
                         #if identifier is unique add it to table
                         if(self.symbol[nextIndexValue] != '@'):
                             self.nextArr[nextIndexValue] = self.symbolPtr
@@ -201,4 +205,3 @@ class TrieTable:
                             
         return True
                     
-

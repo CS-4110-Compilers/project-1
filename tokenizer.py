@@ -67,6 +67,8 @@ t_ignore = ' \t'
 # declaration to ignore comments
 t_ignore_COMMENT = r'\//.*'
 
+# declaration to ignore block comments
+t_ignore_BLOCK_COMMENT = r'\/*.*\*/'
 
 
 # tokens awaiting to be implemented
@@ -97,7 +99,7 @@ def t_error(t):
 
 
 lexer = lex.lex() # parser instance to test input
-lexer.input('// hello')
+lexer.input('/* hello how are you */')
 while True:
     tok = lexer.token()
     if not tok:

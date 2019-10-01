@@ -21,7 +21,8 @@ reserved = {
     'implements': 'IMPLEMENTS',
     'newarray': 'NEWARRAY',
     'void': 'VOID',
-    'extends': 'EXTENDS'
+    'extends': 'EXTENDS',
+    'new': 'NEW'
 }
 
 tokens = [
@@ -64,7 +65,6 @@ t_ignore = ' \t'
 # t_BOOLEANCONSTANT = ''
 # t_INTCONSTANT = ''
 # t_DOUBLECONSTANT = ''
-# t_NEW = ''
 # t_ASSIGNOP = ''
 
 

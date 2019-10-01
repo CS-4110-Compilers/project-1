@@ -55,6 +55,7 @@ t_PERIOD = r'\.'
 t_AND = r'\&&'
 t_NOT = r'\!'
 t_RIGHTBRACKET = r'\]'
+t_STRINGCONSTANT =  r'\"[a-zA-Z_][a-zA-Z_0-9]*\"'
 
 # declaration to ignore white space
 t_ignore = ' \t'
@@ -65,7 +66,7 @@ t_ignore = ' \t'
 # t_DOUBLECONSTANT = ''
 # t_NEW = ''
 # t_ASSIGNOP = ''
-# t_STRINGCONSTANT = ''
+
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
@@ -90,7 +91,7 @@ def t_error(t):
 
 
 lexer = lex.lex()
-lexer.input('if { print' )
+lexer.input('"hello"')
 while True:
     tok = lexer.token()
     if not tok:

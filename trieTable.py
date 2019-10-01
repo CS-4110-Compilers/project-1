@@ -1,4 +1,3 @@
-#TrieTable class to store identifiers.
 class TrieTable:
     
     maxTransitions = 25
@@ -80,6 +79,9 @@ class TrieTable:
                 x += 1
                 ptr += 1
                 self.symbolPtr += 1
+                
+                #if its the end of the table, double the size
+                if(self.symbolPtr == self.maxTransitions): self.growTable()
             
             #add terminal symbol
             self.symbol[ptr] = '@'
@@ -204,4 +206,19 @@ class TrieTable:
                     exitLoop = True
                             
         return True
-                    
+
+    def sampleInputProgram(self):
+    
+        listOfReserved = [ "boolean", "break", "class", "double", "else", "extends", "false", "for", "if",
+                            "implements", "int", "interface", "new", "newarray", "null", "println", "readln",
+                            "return" ,"string", "this", "true", "void", "while"]
+        listOfIds = ["patch","path","pat","pathfinder","paste"]
+        
+        t = TrieTable()
+        
+        for word in listOfReserved:
+            t.searchAndCreateIDs(word)
+        for id in listOfIds:
+            t.searchAndCreateIDs(id)
+            
+        t.printTrie()

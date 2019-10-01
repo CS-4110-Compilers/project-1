@@ -22,7 +22,10 @@ reserved = {
     'newarray': 'NEWARRAY',
     'void': 'VOID',
     'extends': 'EXTENDS',
-    'new': 'NEW'
+    'new': 'NEW',
+    'double': 'DOUBLE',
+    'int': 'INT'
+
 }
 
 tokens = [
@@ -62,24 +65,24 @@ t_STRINGCONSTANT =  r'\"[a-zA-Z_][a-zA-Z_0-9]*\"'
 t_ignore = ' \t'
 
 # tokens awaiting to be implemented
-# t_BOOLEANCONSTANT = ''
-# t_INTCONSTANT = ''
-# t_DOUBLECONSTANT = ''
 # t_ASSIGNOP = ''
 
+# def t_BOOLEANCONSTANT(t):
+#     if t == 'true' or t == 'false':
+#         return t
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reserved.get(t.value, 'ID')  # Check for reserved words
     return t
 
-def t_DOUBLE(t):
+def t_DOUBLECONSTANT(t):
     r'\d\.\d+'
-    t.value = float(t)
+    t.value = str(t)
     return t
 
 
-def t_INT(t):
+def t_INTCONSTANT(t):
     r'\d+'
     t.value = int(t.value)
     return t
@@ -90,8 +93,8 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-lexer = lex.lex()
-lexer.input('"hello"')
+lexer = lex.lex() # parser instance to test input
+lexer.input('1')
 while True:
     tok = lexer.token()
     if not tok:

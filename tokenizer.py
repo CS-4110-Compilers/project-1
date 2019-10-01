@@ -59,17 +59,17 @@ t_PERIOD = r'\.'
 t_AND = r'\&&'
 t_NOT = r'\!'
 t_RIGHTBRACKET = r'\]'
-t_STRINGCONSTANT =  r'\"[a-zA-Z_][a-zA-Z_0-9]*\"'
+t_STRINGCONSTANT = r'\"[a-zA-Z_][a-zA-Z_0-9]*\"'
 
 # declaration to ignore white space
 t_ignore = ' \t'
+# declaration to ignore comments
+t_ignore_COMMENT = r'\//'
 
 # tokens awaiting to be implemented
 # t_ASSIGNOP = ''
 
-# def t_BOOLEANCONSTANT(t):
-#     if t == 'true' or t == 'false':
-#         return t
+
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
@@ -94,7 +94,7 @@ def t_error(t):
 
 
 lexer = lex.lex() # parser instance to test input
-lexer.input('1')
+lexer.input('//')
 while True:
     tok = lexer.token()
     if not tok:

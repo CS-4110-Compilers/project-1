@@ -6,7 +6,7 @@ class TrieTable:
     switch = [-1]*52
     #stores symbols in id's
     symbol = ['*']*maxTransitions
-    #stored index of next id
+    #stores index of next id
     nextArr = [-1]*maxTransitions
     #tracks end of symbol array
     symbolPtr = 0
@@ -42,7 +42,7 @@ class TrieTable:
         print("next:   ",index)
         print(nxt)
             
-    #function to grow table
+    #Function to grow table.
     def growTable(self):
         temp1 = ['*']*self.maxTransitions
         temp2 = [-1]*self.maxTransitions

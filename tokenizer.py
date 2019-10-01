@@ -70,7 +70,11 @@ t_ignore_COMMENT = r'\//.*'
 # declaration to ignore block comments
 t_ignore_BLOCK_COMMENT = r'\/*.*\*/'
 
+# ignore block comments wiht newline characters
+t_ignore_BLOCK_COMMENT2 = r'\/*.*\n\*/'
 
+# ignore newline characters
+t_ignore_NEWLINE = r' \n'
 # tokens awaiting to be implemented
 # t_ASSIGNOP = ''
 

@@ -207,18 +207,22 @@ class TrieTable:
                             
         return True
 
-    def sampleInputProgram(self):
+def sampleInputProgram():
     
-        listOfReserved = [ "boolean", "break", "class", "double", "else", "extends", "false", "for", "if",
+    listOfReserved = [ "boolean", "break", "class", "double", "else", "extends", "false", "for", "if",
                             "implements", "int", "interface", "new", "newarray", "null", "println", "readln",
                             "return" ,"string", "this", "true", "void", "while"]
-        listOfIds = ["patch","path","pat","pathfinder","paste"]
+    listOfIds = ["Funny","funny","flag","s","a"]
         
-        t = TrieTable()
+    t = TrieTable()
         
-        for word in listOfReserved:
-            t.searchAndCreateIDs(word)
-        for id in listOfIds:
-            t.searchAndCreateIDs(id)
+    for word in listOfReserved:
+        t.searchAndCreateIDs(word)
+    for id in listOfIds:
+        t.searchAndCreateIDs(id)
             
-        t.printTrie()
+    t.printTrie()
+    print(len(t.symbol))
+    
+sampleInputProgram()
+        

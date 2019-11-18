@@ -3,6 +3,7 @@
 '''
 
 import lex
+import yacc
 
 # <----- TOKENS ----->
 
@@ -96,16 +97,17 @@ t_ignore_TAB = r'\t'
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
-
+    
 # build the lexer
 lexer = lex.lex()
 
 # read input from file, tokenize, and print
 file = open("toy_program.txt", "r")
-if file.mode == 'r':
-    lexer.input(file.read())
-    for tok in lexer:
-        print(tok)
+
+# if file.mode == 'r':
+#     lexer.input(file.read())
+#     for tok in lexer:
+#         print(tok)
 
 '''
 ---------- END OF PROJECT 1 ----------
@@ -116,12 +118,10 @@ if file.mode == 'r':
 ---------- START OF PROJECT 2 ----------
 '''
 
-import yacc
-
 # <----- GRAMMAR ----->
 def p_Program(p):
     '''
-    Program : ProgramDeclaration
+    Program : Program Declaration
             | Declaration 
     '''
     
@@ -305,7 +305,7 @@ def p_Expression(p):
                | Expression CompareOperator Expression
                | Expression LogicalOperator Expression
                | NOT Expression
-               | READLN LEFPAREN RIGHTPAREN
+               | READLN LEFTPAREN RIGHTPAREN
                | NEW LEFTPAREN ID RIGHTPAREN
                | NEWARRAY LEFTPAREN INTCONSTANT COMMA Type RIGHTPAREN
     '''
@@ -364,6 +364,18 @@ def p_Constant(p):
              | NULL
     '''
     
+def p_empty(p):
+    'empty :'
+    pass
+
+# Error rule for syntax errors
+def p_error(p):
+    print("Syntax error in input!")
+    
+   
+# Build the parser
+parser = yacc.yacc()
+
     
 '''
 ---------- END OF PROJECT 2 ----------

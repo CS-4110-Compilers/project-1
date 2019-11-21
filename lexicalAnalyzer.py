@@ -304,7 +304,7 @@ def p_Expression(p):
                | THIS
                | Call
                | LEFTPAREN Expression RIGHTPAREN
-               | MINUS Expression
+               | UminusExpression
                | Expression ArithmaticOperator Expression
                | Expression CompareOperator Expression
                | Expression LogicalOperator Expression
@@ -313,7 +313,11 @@ def p_Expression(p):
                | NEW LEFTPAREN ID RIGHTPAREN
                | NEWARRAY LEFTPAREN INTCONSTANT COMMA Type RIGHTPAREN
     '''
-    
+def p_UminusExpression(p):
+    '''
+    UminusExpression : MINUS Expression %prec UMINUS
+    '''
+
 def p_ArithmaticOperator(p):
     '''
     ArithmaticOperator : PLUS
@@ -375,10 +379,20 @@ def p_empty(p):
 def p_error(p):
     print("Syntax error in input!")
     
-   
+precedence = (
+    ('nonassoc', 'ASSIGNOP'),
+    ('left', 'OR'),
+    ('left', 'AND'),
+    ('left', 'EQUAL', 'NOTEQUAL'),
+    ('nonassoc', 'LESS', 'LESSEQUAL', 'GREATER', 'GREATEREQUAL'),
+    ('left', 'PLUS', 'MINUS'),
+    ('left', 'MULTIPLICATION', 'DIVISION', 'MOD'),
+    ('right', 'NOT', 'UMINUS'),
+    ('nonassoc', 'LEFTBRACKET', 'PERIOD')
+    )
+
 # Build the parser
 parser = yacc.yacc()
-
 
 #parser.parse('',lexer)
     

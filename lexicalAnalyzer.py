@@ -102,8 +102,7 @@ def t_error(t):
 lexer = lex.lex()
 
 # read input from file, tokenize, and print
-file = open("toy_program.txt", "r")
-
+# file = open("toy_program.txt", "r")
 # if file.mode == 'r':
 #     lexer.input(file.read())
 #     for tok in lexer:
@@ -155,15 +154,20 @@ def p_Type(p):
     
 def p_FunctionDeclaration(p):
     '''
-    FunctionDeclaration : Type ID RIGHTPAREN Formals LEFTPAREN StatementBlock
-                        | VOID ID RIGHTPAREN Formals LEFTPAREN StatementBlock
+    FunctionDeclaration : Type ID LEFTPAREN Formals RIGHTPAREN StatementBlock
+                        | VOID ID LEFTPAREN Formals RIGHTPAREN StatementBlock
     '''
     
 def p_Formals(p):
     '''
-    Formals : Variable COMMA Formals
-            | Variable
+    Formals : VariableList
             | empty
+    '''
+    
+def p_VariableList(p):
+    '''
+    VariableList : Variable COMMA VariableList
+                 | Variable
     '''
     
 def p_ClassDeclaration(p):
@@ -278,7 +282,7 @@ def p_BreakStatement(p):
     
 def p_ReturnStatement(p):
     '''
-    ReturnStatement : RETURN OptionalExpression
+    ReturnStatement : RETURN OptionalExpression SEMICOLON
     '''
     
 def p_PrintStatement(p):
@@ -338,21 +342,20 @@ def p_LogicalOperator(p):
 def p_LVal(p):
     '''
     LVal : ID
-         | LVal
-         | LEFTBRACKET Expression RIGHTBRACKET
+         | LVal LEFTBRACKET Expression RIGHTBRACKET
          | LVal PERIOD ID
     '''
     
 def p_Call(p):
     '''
-    Call : ID LEFTPAREN Actual RIGHTPAREN
-         | ID PERIOD ID LEFTPAREN Actual RIGHTPAREN
+    Call : ID LEFTPAREN Actuals RIGHTPAREN
+         | ID PERIOD ID LEFTPAREN Actuals RIGHTPAREN
     '''
     
 def p_Actual(p):
     '''
-    Actual : ExpressionList
-           | empty
+    Actuals : ExpressionList
+            | empty
     '''
     
 def p_Constant(p):
@@ -376,6 +379,8 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
+
+#parser.parse('',lexer)
     
 '''
 ---------- END OF PROJECT 2 ----------

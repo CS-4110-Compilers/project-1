@@ -5,14 +5,9 @@ from lexicalAnalyzer import lexer
 # <----- GRAMMAR ----->
 def p_Program(p):
     '''
-    Program : Program Declaration
+    Program : Declaration Program
             | Declaration 
     '''
-    if len(p) == 2:
-        p[0] = '(Program:'+p[1]+')'
-    else:
-        p[0] = '(Program:'+p[1]+', '+'Declaration:'+p[2]+')'
-    print(p[0])
     
 def p_Declaration(p):
     '''
@@ -21,19 +16,17 @@ def p_Declaration(p):
                 | ClassDeclaration
                 | InterfaceDeclaration
     '''
-    p[0] = '(Declaration:'+p[1]+')'
     
 def p_VariableDeclaration(p):
     '''
     VariableDeclaration : Variable SEMICOLON
     '''
-    p[0] = '(Variable:'+p[1]+', '+p[2]+')'
 
 def p_Variable(p):
     '''
     Variable : Type ID
+             | ID ID
     '''
-    p[0] = '(Type:'+p[1]+', ID:'+p[2]+')'
     
 def p_Type(p):
     '''
@@ -42,42 +35,35 @@ def p_Type(p):
          | BOOLEAN
          | STRING
          | Type LEFTBRACKET RIGHTBRACKET
-         | ID
+         | ID LEFTBRACKET RIGHTBRACKET
     '''
-    if len(p) == 2:
-        p[0] = p[1]
-    else:
-        p[0] = p[1]+p[2]+p[3]
     
 def p_FunctionDeclaration(p):
     '''
     FunctionDeclaration : Type ID LEFTPAREN Formals RIGHTPAREN StatementBlock
+                        | Type ID LEFTPAREN RIGHTPAREN StatementBlock
+                        | ID ID LEFTPAREN Formals RIGHTPAREN StatementBlock
+                        | ID ID LEFTPAREN RIGHTPAREN StatementBlock
                         | VOID ID LEFTPAREN Formals RIGHTPAREN StatementBlock
+                        | VOID ID LEFTPAREN RIGHTPAREN StatementBlock
     '''
     
 def p_Formals(p):
     '''
-    Formals : VariableList
-            | empty
-    '''
-    
-def p_VariableList(p):
-    '''
-    VariableList : Variable COMMA VariableList
-                 | Variable
+    Formals : Variable COMMA Formals
+            | Variable
     '''
     
 def p_ClassDeclaration(p):
     '''
-    ClassDeclaration : CLASS ID ClassOptions LEFTBRACE FieldKleene RIGHTBRACE
-    '''
-
-def p_ClassOptions(p):
-    '''
-    ClassOptions : EXTENDS ID
-                 | IMPLEMENTS IdList
-                 | EXTENDS ID IMPLEMENTS IdList
-                 | empty
+    ClassDeclaration : CLASS ID EXTENDS ID LEFTBRACE Fields RIGHTBRACE
+                     | CLASS ID IMPLEMENTS IdList LEFTBRACE Fields RIGHTBRACE
+                     | CLASS ID EXTENDS ID IMPLEMENTS IdList LEFTBRACE Fields RIGHTBRACE
+                     | CLASS ID LEFTBRACE Fields RIGHTBRACE
+                     | CLASS ID EXTENDS ID LEFTBRACE RIGHTBRACE
+                     | CLASS ID IMPLEMENTS IdList LEFTBRACE RIGHTBRACE
+                     | CLASS ID EXTENDS ID IMPLEMENTS IdList LEFTBRACE RIGHTBRACE
+                     | CLASS ID LEFTBRACE RIGHTBRACE
     '''
     
 def p_IdList(p):
@@ -86,10 +72,10 @@ def p_IdList(p):
            | ID
     '''
     
-def p_FieldKleene(p):
+def p_Fields(p):
     '''
-    FieldKleene : Field FieldKleene
-                | empty
+    Fields : Field Fields
+           | Field
     '''
     
 def p_Field(p):
@@ -100,36 +86,44 @@ def p_Field(p):
     
 def p_InterfaceDeclaration(p):
     '''
-    InterfaceDeclaration : INTERFACE ID LEFTBRACE PrototypeKleene RIGHTBRACE
+    InterfaceDeclaration : INTERFACE ID LEFTBRACE Prototypes RIGHTBRACE
+                         | INTERFACE ID LEFTBRACE RIGHTBRACE
     '''
     
-def p_PrototypeKleene(p):
+def p_Prototypes(p):
     '''
-    PrototypeKleene : Prototype PrototypeKleene
-                    | empty
+    Prototypes : Prototype Prototypes
+               | Prototype
     '''
     
 def p_Prototype(p):
     '''
     Prototype : Type ID LEFTPAREN Formals RIGHTPAREN SEMICOLON
+              | Type ID LEFTPAREN RIGHTPAREN SEMICOLON
+              | ID ID LEFTPAREN Formals RIGHTPAREN SEMICOLON
+              | ID ID LEFTPAREN RIGHTPAREN SEMICOLON
               | VOID ID LEFTPAREN Formals RIGHTPAREN SEMICOLON
+              | VOID ID LEFTPAREN RIGHTPAREN SEMICOLON
     '''
     
 def p_StatementBlock(p):
     '''
-    StatementBlock : LEFTBRACE VaribleDeclarationKleene StatementKleene RIGHTBRACE
+    StatementBlock : LEFTBRACE VaribleDeclarations Statements RIGHTBRACE
+                   | LEFTBRACE Statements RIGHTBRACE
+                   | LEFTBRACE VaribleDeclarations RIGHTBRACE
+                   | LEFTBRACE RIGHTBRACE
     '''
     
-def p_VaribleDeclarationKleene(p):
+def p_VaribleDeclarations(p):
     '''
-    VaribleDeclarationKleene : VariableDeclaration VaribleDeclarationKleene
-                             | empty
+    VaribleDeclarations : VariableDeclaration VaribleDeclarations
+                        | VariableDeclaration
     '''
     
-def p_StatementKleene(p):
+def p_Statements(p):
     '''
-    StatementKleene : Statement StatementKleene
-                    | empty
+    Statements : Statement Statements
+               | Statement 
     '''
     
 def p_Statement(p):
@@ -147,13 +141,8 @@ def p_Statement(p):
     
 def p_IfStatement(p):
     '''
-    IfStatement : IF LEFTPAREN Expression RIGHTPAREN Statement OptionalElse
-    '''
-    
-def p_OptionalElse(p):
-    '''
-    OptionalElse : ELSE Statement
-                 | empty
+    IfStatement : IF LEFTPAREN Expression RIGHTPAREN Statement ELSE Statement
+                | IF LEFTPAREN Expression RIGHTPAREN Statement
     '''
     
 def p_WhileStatement(p):
@@ -163,13 +152,10 @@ def p_WhileStatement(p):
     
 def p_ForStatement(p):
     '''
-    ForStatement : FOR LEFTPAREN OptionalExpression SEMICOLON Expression SEMICOLON OptionalExpression RIGHTPAREN Statement
-    '''
-    
-def p_OptionalExpression(p):
-    '''
-    OptionalExpression : Expression
-                       | empty
+    ForStatement : FOR LEFTPAREN Expression SEMICOLON Expression SEMICOLON Expression RIGHTPAREN Statement
+                 | FOR LEFTPAREN SEMICOLON Expression SEMICOLON Expression RIGHTPAREN Statement
+                 | FOR LEFTPAREN Expression SEMICOLON Expression SEMICOLON RIGHTPAREN Statement
+                 | FOR LEFTPAREN SEMICOLON Expression SEMICOLON RIGHTPAREN Statement
     '''
     
 def p_BreakStatement(p):
@@ -179,7 +165,8 @@ def p_BreakStatement(p):
     
 def p_ReturnStatement(p):
     '''
-    ReturnStatement : RETURN OptionalExpression SEMICOLON
+    ReturnStatement : RETURN Expression SEMICOLON
+                    | RETURN SEMICOLON
     '''
     
 def p_PrintStatement(p):
@@ -195,9 +182,9 @@ def p_ExpressionList(p):
     
 def p_Expression(p):
     '''
-    Expression : LVal ASSIGNOP Expression
+    Expression : LValue ASSIGNOP Expression
                | Constant
-               | LVal
+               | LValue
                | THIS
                | Call
                | LEFTPAREN Expression RIGHTPAREN
@@ -209,7 +196,9 @@ def p_Expression(p):
                | READLN LEFTPAREN RIGHTPAREN
                | NEW LEFTPAREN ID RIGHTPAREN
                | NEWARRAY LEFTPAREN INTCONSTANT COMMA Type RIGHTPAREN
+               | NEWARRAY LEFTPAREN INTCONSTANT COMMA ID RIGHTPAREN
     '''
+    
 def p_UminusExpression(p):
     '''
     UminusExpression : MINUS Expression %prec UMINUS
@@ -240,23 +229,24 @@ def p_LogicalOperator(p):
                     | OR
     '''
     
-def p_LVal(p):
+def p_LValue(p):
     '''
-    LVal : ID
-         | LVal LEFTBRACKET Expression RIGHTBRACKET
-         | LVal PERIOD ID
+    LValue : ID
+         | LValue LEFTBRACKET Expression RIGHTBRACKET
+         | LValue PERIOD ID
     '''
     
 def p_Call(p):
     '''
     Call : ID LEFTPAREN Actuals RIGHTPAREN
+         | ID LEFTPAREN RIGHTPAREN
          | ID PERIOD ID LEFTPAREN Actuals RIGHTPAREN
+         | ID PERIOD ID LEFTPAREN RIGHTPAREN
     '''
     
-def p_Actual(p):
+def p_Actuals(p):
     '''
     Actuals : ExpressionList
-            | empty
     '''
     
 def p_Constant(p):
@@ -267,12 +257,6 @@ def p_Constant(p):
              | BOOLEANCONSTANT
              | NULL
     '''
-      
-def p_empty(p):
-    '''
-    empty :
-    '''
-    pass
 
 # Error rule for syntax errors
 def p_error(p):
@@ -287,9 +271,10 @@ precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'MULTIPLICATION', 'DIVISION', 'MOD'),
     ('right', 'NOT', 'UMINUS'),
-    ('nonassoc', 'LEFTBRACKET', 'PERIOD')
+    ('right', 'LEFTBRACKET', 'PERIOD')
 )
 
 # Build the parser
 parser = yacc.yacc()
-parser.parse('int [] x;',lexer)
+input = "void f(double x, double y) { for ( ;x < 10 ; ) x = 1; }"
+parser.parse(input,lexer)

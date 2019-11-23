@@ -1,6 +1,9 @@
 import yacc
 from lexicalAnalyzer import tokens
 from lexicalAnalyzer import lexer
+import logging
+import pandas as pd
+
 
 # <----- GRAMMAR ----->
 def p_Program(p):
@@ -395,13 +398,98 @@ precedence = (
     ('right', 'LEFTBRACKET', 'PERIOD')
 )
 
-# Build the parser
-parser = yacc.yacc()
+# function proess values
+def clean_data(d_list: list) -> dict:
+    data_dict = {
+        'State': None,
+        'Stack': None,
+        'Action': None,
+        'Result': None
+    }
+    acum = ''
+    for element in d_list:
+        for char in element:
+            acum += char
+            if acum in data_dict:
+                key = acum
+                element = element[element.index(':')+1:]
+                element = element.rstrip('\n')
+                data_dict[key] = element
+        acum = ''
 
-#read input from file, tokenize, and print
-with open('toy_program.txt', 'r') as file:
-    data = file.read().replace('\n', '')
-    parser.parse(data,lexer, debug=True)
-input = "class One { int oneInt; double f() { this.oneInt=3; } }"
-print(data)
-parser.parse(data,lexer, debug=True)
+    # print(data_dict) # debug purposes
+    return data_dict
+
+
+if __name__ == '__main__':
+    # craete logging object
+    logging.basicConfig(
+        level = logging.DEBUG,
+        filename="debug_output.txt",
+        filemode = 'w',
+        format = '%(filename)10s:%(lineno)4d:%(message)s'
+    )
+    log = logging.getLogger()
+    # args for yacc debug=True,debuglog=log when debugging
+    # Build the parser
+    parser = yacc.yacc(debug=True,debuglog=log)
+
+    input_string = "void f(double x, double y) { for ( ;x < 10 ; ) x = 1; }"
+
+    # when gnerating log file change debug to log
+    debug_info = parser.parse(input_string, lexer, debug=log)
+
+    # # create file to store debug output for future/further processing
+    # with open('debug_data.txt','w',encoding='utf-8') as f:
+    #     f.write(debug_info)
+
+    # ---------- beginning of output processing ------------------ #
+    buffer = []
+    t_data = []
+    tmp_group = []
+    data_list = []
+    b_string = 'PARSE DEBUG START'  # beginning line
+    e_string = 'PARSE DEBUG END'    # ending line of debug
+    d_string = 'Done'  # last line of log file
+
+    # Create dataframe
+    df = pd.DataFrame(columns=['State','Stack','Action','Result'])
+
+
+    with open('debug_output.txt', encoding='utf-8') as f:
+        for line in f:
+            if line != '\n':
+                if b_string not in line and e_string not in line and d_string not in line:
+                    line = line.replace('yacc.py:', '')
+                    line =line[line.index(':')+1:]
+                    buffer.append(line)
+
+    for line in buffer:
+        if len(line) == 1:
+            tmp_dict = clean_data(tmp_group)
+            data_list.append(tmp_dict)
+            df = df.append(tmp_dict,ignore_index=True)
+            tmp_group = []
+        else:
+            tmp_group.append(line)
+    # drop first row as it only contians Null values
+    df = df.drop(index=0)
+
+    # reset index
+    df = df.reset_index()
+
+    # kick off indexing to being at 1
+    df = df.shift()[1:]
+
+    # export dataframe to excel spread sheet
+    # NOTE requries openpyxl (??) package if using pychamr easily search and install
+    # via pycharm project prefs
+
+    # for csv file uncomment line below
+    # df.to_csv('shift_reduce_trace.csv')
+    df.to_excel('shift_reduce_trace.xlsx')
+
+    # note to_excel & to_csv will create correspodning file in directory as program is running
+    # please send coffee
+    # ------------ End of Data Processing ------------- #
+>>>>>>> ab1608cd26fbe5b725ed7582d0c16c0c2e97e812

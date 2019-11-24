@@ -71,7 +71,7 @@ t_INTCONSTANT = r'0[xX][0-9a-fA-F]+|[0-9]+(?!\.)'
 t_DOUBLECONSTANT = r'[0-9]+\.[0-9]*([eE]([+-])?[0-9]+)?'
 
 # string constants
-t_STRINGCONSTANT = r'\"[^\"\n]*\"'
+t_STRINGCONSTANT = r'\"(\\.|[^"\\])*\"'
 
 # identifiers
 def t_ID(t):

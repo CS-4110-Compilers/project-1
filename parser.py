@@ -11,7 +11,8 @@ def p_Program(p):
     Program : Declaration Program
             | Declaration
     '''
-    
+
+
 def p_Declaration(p):
     '''
     Declaration : VariableDeclaration
@@ -19,18 +20,21 @@ def p_Declaration(p):
                 | ClassDeclaration
                 | InterfaceDeclaration
     '''
-    
+
+
 def p_VariableDeclaration(p):
     '''
     VariableDeclaration : Variable SEMICOLON
     '''
-    
+
+
 def p_Variable(p):
     '''
     Variable : Type ID
              | ID ID
     '''
-    
+
+
 def p_Type(p):
     '''
     Type : INT
@@ -40,7 +44,8 @@ def p_Type(p):
          | Type LEFTBRACKET RIGHTBRACKET
          | ID LEFTBRACKET RIGHTBRACKET
     '''
-    
+
+
 def p_FunctionDeclaration(p):
     '''
     FunctionDeclaration : Type ID LEFTPAREN Formals RIGHTPAREN StatementBlock
@@ -51,12 +56,14 @@ def p_FunctionDeclaration(p):
                         | VOID ID LEFTPAREN RIGHTPAREN StatementBlock
     '''
 
+
 def p_Formals(p):
     '''
     Formals : Variable COMMA Formals
             | Variable
     '''
-    
+
+
 def p_ClassDeclaration(p):
     '''
     ClassDeclaration : CLASS ID EXTENDS ID LEFTBRACE Fields RIGHTBRACE
@@ -68,36 +75,43 @@ def p_ClassDeclaration(p):
                      | CLASS ID EXTENDS ID IMPLEMENTS IdList LEFTBRACE RIGHTBRACE
                      | CLASS ID LEFTBRACE RIGHTBRACE
     '''
-    
+
+
 def p_IdList(p):
     '''
     IdList : ID COMMA IdList
            | ID
     '''
-    
+
+
 def p_Fields(p):
     '''
     Fields : Field Fields
            | Field
     '''
+
+
 def p_Field(p):
     '''
     Field : VariableDeclaration
           | FunctionDeclaration
     '''
-    
+
+
 def p_InterfaceDeclaration(p):
     '''
     InterfaceDeclaration : INTERFACE ID LEFTBRACE Prototypes RIGHTBRACE
                          | INTERFACE ID LEFTBRACE RIGHTBRACE
     '''
-    
+
+
 def p_Prototypes(p):
     '''
     Prototypes : Prototype Prototypes
                | Prototype
     '''
-    
+
+
 def p_Prototype(p):
     '''
     Prototype : Type ID LEFTPAREN Formals RIGHTPAREN SEMICOLON
@@ -107,7 +121,8 @@ def p_Prototype(p):
               | VOID ID LEFTPAREN Formals RIGHTPAREN SEMICOLON
               | VOID ID LEFTPAREN RIGHTPAREN SEMICOLON
     '''
-    
+
+
 def p_StatementBlock(p):
     '''
     StatementBlock : LEFTBRACE VaribleDeclarations Statements RIGHTBRACE
@@ -116,18 +131,21 @@ def p_StatementBlock(p):
                    | LEFTBRACE RIGHTBRACE
     '''
 
+
 def p_VaribleDeclarations(p):
     '''
     VaribleDeclarations : VariableDeclaration VaribleDeclarations
                         | VariableDeclaration
     '''
-    
+
+
 def p_Statements(p):
     '''
     Statements : Statement Statements
                | Statement 
     '''
-    
+
+
 def p_Statement(p):
     '''
     Statement : Expression SEMICOLON
@@ -140,18 +158,21 @@ def p_Statement(p):
               | PrintStatement
               | StatementBlock
     '''
-    
+
+
 def p_IfStatement(p):
     '''
     IfStatement : IF LEFTPAREN Expression RIGHTPAREN Statement ELSE Statement
                 | IF LEFTPAREN Expression RIGHTPAREN Statement
     '''
-    
+
+
 def p_WhileStatement(p):
     '''
     WhileStatement : WHILE LEFTPAREN Expression RIGHTPAREN Statement
     '''
-    
+
+
 def p_ForStatement(p):
     '''
     ForStatement : FOR LEFTPAREN Expression SEMICOLON Expression SEMICOLON Expression RIGHTPAREN Statement
@@ -159,29 +180,34 @@ def p_ForStatement(p):
                  | FOR LEFTPAREN Expression SEMICOLON Expression SEMICOLON RIGHTPAREN Statement
                  | FOR LEFTPAREN SEMICOLON Expression SEMICOLON RIGHTPAREN Statement
     '''
-    
+
+
 def p_BreakStatement(p):
     '''
     BreakStatement : BREAK SEMICOLON
     '''
-    
+
+
 def p_ReturnStatement(p):
     '''
     ReturnStatement : RETURN Expression SEMICOLON
                     | RETURN SEMICOLON
     '''
-    
+
+
 def p_PrintStatement(p):
     '''
     PrintStatement : PRINTLN LEFTPAREN ExpressionList RIGHTPAREN SEMICOLON
     '''
-    
+
+
 def p_ExpressionList(p):
     '''
     ExpressionList : Expression COMMA ExpressionList
                    | Expression
     '''
-    
+
+
 def p_Expression(p):
     '''
     Expression : LValue ASSIGNOP Expression
@@ -201,10 +227,13 @@ def p_Expression(p):
                | NEWARRAY LEFTPAREN INTCONSTANT COMMA ID RIGHTPAREN
     '''
 
+
 def p_UminusExpression(p):
     '''
     UminusExpression : MINUS Expression %prec UMINUS
     '''
+
+
 def p_ArithmaticOperator(p):
     '''
     ArithmaticOperator : PLUS
@@ -213,7 +242,8 @@ def p_ArithmaticOperator(p):
                        | DIVISION
                        | MOD
     '''
-    
+
+
 def p_CompareOperator(p):
     '''
     CompareOperator : LESS
@@ -223,13 +253,15 @@ def p_CompareOperator(p):
                     | EQUAL
                     | NOTEQUAL
     '''
-    
+
+
 def p_LogicalOperator(p):
     '''
     LogicalOperator : AND
                     | OR
     '''
-    
+
+
 def p_LValue(p):
     '''
     LValue : ID
@@ -239,7 +271,7 @@ def p_LValue(p):
            | ID LEFTBRACKET Expression RIGHTBRACKET
     '''
 
-    
+
 def p_Call(p):
     '''
     Call : ID LEFTPAREN Actuals RIGHTPAREN
@@ -247,12 +279,14 @@ def p_Call(p):
          | ID PERIOD ID LEFTPAREN Actuals RIGHTPAREN
          | ID PERIOD ID LEFTPAREN RIGHTPAREN
     '''
-    
+
+
 def p_Actuals(p):
     '''
     Actuals : ExpressionList
     '''
-    
+
+
 def p_Constant(p):
     '''
     Constant : INTCONSTANT
@@ -262,9 +296,11 @@ def p_Constant(p):
              | NULL
     '''
 
+
 # Error rule for syntax errors
 def p_error(p):
     print("Syntax error in input!")
+
 
 precedence = (
     ('right', 'ASSIGNOP'),
@@ -278,21 +314,21 @@ precedence = (
     ('left', 'LEFTBRACKET', 'PERIOD')
 )
 
+
 # function process values
 def clean_data(d_list: list) -> dict:
     data_dict = {
-        'State': None,
         'Stack': None,
         'Action': None,
-        'Result': None
     }
+
     acum = ''
     for element in d_list:
         for char in element:
             acum += char
             if acum in data_dict:
                 key = acum
-                element = element[element.index(':')+1:]
+                element = element[element.index(':') + 1:]
                 element = element.rstrip('\n')
                 data_dict[key] = element
         acum = ''
@@ -304,17 +340,17 @@ def clean_data(d_list: list) -> dict:
 if __name__ == '__main__':
     # craete logging object
     logging.basicConfig(
-        level = logging.DEBUG,
+        level=logging.DEBUG,
         filename="debug_output.txt",
-        filemode = 'w',
-        format = '%(filename)10s:%(lineno)4d:%(message)s'
+        filemode='w',
+        format='%(filename)10s:%(lineno)4d:%(message)s'
     )
     log = logging.getLogger()
     # args for yacc debug=True,debuglog=log when debugging
     # Build the parser
-    parser = yacc.yacc(debug=True,debuglog=log)
+    parser = yacc.yacc(debug=True, debuglog=log)
 
-    input_string = "void f(double x, double y) { front = in.nextLine(); }"
+    input_string = 'void f(double x, double y) { front = in.nextLine(); }'
 
     # # when generating log file change debug to log
     debug_info = parser.parse(input_string, lexer, debug=log)
@@ -325,39 +361,50 @@ if __name__ == '__main__':
     # if file.mode == 'r':
     #     debug_info = parser.parse(file.read(), lexer, debug=log)
 
-    # # create file to store debug output for future/further processing
-    # with open('debug_data.txt','w',encoding='utf-8') as f:
-    #     f.write(debug_info)
-
     # ---------- beginning of output processing ------------------ #
     buffer = []
     t_data = []
     tmp_group = []
     data_list = []
     b_string = 'PARSE DEBUG START'  # beginning line
-    e_string = 'PARSE DEBUG END'    # ending line of debug
+    e_string = 'PARSE DEBUG END'  # ending line of debug
     d_string = 'Done'  # last line of log file
+    key_list = ['Stack','Action']
+    nBuffer = []
+    acum_tmp  = ''
+    sp_counter = 0
 
     # Create dataframe
-    df = pd.DataFrame(columns=['State','Stack','Action','Result'])
-
+    df = pd.DataFrame(columns=['Stack', 'Action'])
 
     with open('debug_output.txt', encoding='utf-8') as f:
         for line in f:
             if line != '\n':
                 if b_string not in line and e_string not in line and d_string not in line:
                     line = line.replace('yacc.py:', '')
-                    line =line[line.index(':')+1:]
+                    line = line[line.index(':') + 1:]
                     buffer.append(line)
 
     for line in buffer:
-        if len(line) == 1:
+        for character in line:
+            acum_tmp += character
+            if acum_tmp in key_list:
+                nBuffer.append(line)
+                sp_counter += 1
+                if (sp_counter%2) == 0:
+                    nBuffer.append('\n')
+        acum_tmp = ''
+    nBuffer.append('\n') # takes care of trailing newline
+
+    for line in nBuffer:
+        if line == '\n':
             tmp_dict = clean_data(tmp_group)
-            data_list.append(tmp_dict)
-            df = df.append(tmp_dict,ignore_index=True)
+            df = df.append(tmp_dict, ignore_index=True)
             tmp_group = []
         else:
             tmp_group.append(line)
+    df = df.append({'Stack': None, 'Action': None}, ignore_index=True)
+
     # drop first row as it only contians Null values
     df = df.drop(index=0)
 

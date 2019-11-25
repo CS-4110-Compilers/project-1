@@ -2,7 +2,7 @@ import yacc
 from lexicalAnalyzer import tokens
 from lexicalAnalyzer import lexer
 import logging
-import pandas as pd
+import csv
 
 
 # <----- GRAMMAR ----->
@@ -314,6 +314,7 @@ precedence = (
     ('left', 'LEFTBRACKET', 'PERIOD')
 )
 
+
 # function process values
 def clean_data(d_list: list) -> dict:
     data_dict = {
@@ -349,7 +350,7 @@ if __name__ == '__main__':
     # Build the parser
     parser = yacc.yacc(debug=True, debuglog=log)
 
-    input_string = 'void f(double x, double y) { front = in.nextLine(); }'
+    input_string = 'void f(double x, double y) { }'
 
     # # when generating log file change debug to log
     debug_info = parser.parse(input_string, lexer, debug=log)
@@ -368,14 +369,11 @@ if __name__ == '__main__':
     b_string = 'PARSE DEBUG START'  # beginning line
     e_string = 'PARSE DEBUG END'  # ending line of debug
     d_string = 'Done'  # last line of log file
-    key_list = ['Stack','Action']
+    key_list = ['Stack', 'Action']
     nBuffer = []
-    acum_tmp  = ''
+    acum_tmp = ''
     sp_counter = 0
-
-    # Create dataframe
-    df = pd.DataFrame(columns=['Stack', 'Action'])
-    df = df.append({'Stack': None, 'Action': None}, ignore_index=True)
+    data_dict = []
 
     with open('debug_output.txt', encoding='utf-8') as f:
         for line in f:
@@ -391,37 +389,31 @@ if __name__ == '__main__':
             if acum_tmp in key_list:
                 nBuffer.append(line)
                 sp_counter += 1
-                if (sp_counter%2) == 0:
+                if (sp_counter % 2) == 0:
                     nBuffer.append('\n')
         acum_tmp = ''
-    nBuffer.append('\n') # takes care of trailing newline
+    nBuffer.append('\n')  # takes care of trailing newline
 
     for line in nBuffer:
         if line == '\n':
             tmp_dict = clean_data(tmp_group)
-            df = df.append(tmp_dict, ignore_index=True)
+            data_dict.append(tmp_dict)
             tmp_group = []
         else:
             tmp_group.append(line)
-    df = df.append({'Stack': None, 'Action': None}, ignore_index=True)
 
-    # drop first row as it only contians Null values
-    df = df.drop(index=0)
+    # generate csv file
+    # change filename as seen fit with '.csv' extension
+    filename = 'output.csv'
+    try:
+        with open(filename, 'w', encoding='utf-8') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=key_list)
+            writer.writeheader()
+            for data in data_dict:
+                writer.writerow(data)
+            print('csv file created!')
+    except IOError:
+        print('I/O error encountered')
 
-    # reset index
-    df = df.reset_index()
-
-    # kick off indexing to being at 1
-    df = df.shift()[1:]
-
-    # export dataframe to excel spread sheet
-    # NOTE requries openpyxl (??) package if using pychamr easily search and install
-    # via pycharm project prefs
-
-    # for csv file uncomment line below
-    # df.to_csv('shift_reduce_trace.csv')
-    df.to_excel('shift_reduce_trace.xlsx')
-
-    # note to_excel & to_csv will create correspodning file in directory as program is running
     # please send coffee
     # ------------ End of Data Processing ------------- #

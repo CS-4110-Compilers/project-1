@@ -142,7 +142,7 @@ def p_VaribleDeclarations(p):
 def p_Statements(p):
     '''
     Statements : Statement Statements
-               | Statement 
+               | Statement
     '''
 
 
@@ -314,7 +314,6 @@ precedence = (
     ('left', 'LEFTBRACKET', 'PERIOD')
 )
 
-
 # function process values
 def clean_data(d_list: list) -> dict:
     data_dict = {
@@ -376,6 +375,7 @@ if __name__ == '__main__':
 
     # Create dataframe
     df = pd.DataFrame(columns=['Stack', 'Action'])
+    df = df.append({'Stack': None, 'Action': None}, ignore_index=True)
 
     with open('debug_output.txt', encoding='utf-8') as f:
         for line in f:

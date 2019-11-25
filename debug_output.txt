@@ -1,0 +1,163 @@
+   yacc.py: 362:PLY: PARSE DEBUG START
+   yacc.py: 410:
+   yacc.py: 411:State  : 0
+   yacc.py: 435:Stack  : . LexToken(VOID,'void',1,0)
+   yacc.py: 445:Action : Shift and goto state 10
+   yacc.py: 410:
+   yacc.py: 411:State  : 10
+   yacc.py: 435:Stack  : VOID . LexToken(ID,'f',1,5)
+   yacc.py: 445:Action : Shift and goto state 23
+   yacc.py: 410:
+   yacc.py: 411:State  : 23
+   yacc.py: 435:Stack  : VOID ID . LexToken(LEFTPAREN,'(',1,6)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN . LexToken(DOUBLE,'double',1,7)
+   yacc.py: 445:Action : Shift and goto state 14
+   yacc.py: 410:
+   yacc.py: 411:State  : 14
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN DOUBLE . LexToken(ID,'x',1,14)
+   yacc.py: 471:Action : Reduce rule [Type -> DOUBLE] with ['double'] and goto state 35
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 35
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Type . LexToken(ID,'x',1,14)
+   yacc.py: 445:Action : Shift and goto state 58
+   yacc.py: 410:
+   yacc.py: 411:State  : 58
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Type ID . LexToken(COMMA,',',1,15)
+   yacc.py: 471:Action : Reduce rule [Variable -> Type ID] with [None,'x'] and goto state 39
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 39
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Variable . LexToken(COMMA,',',1,15)
+   yacc.py: 445:Action : Shift and goto state 63
+   yacc.py: 410:
+   yacc.py: 411:State  : 63
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Variable COMMA . LexToken(DOUBLE,'double',1,17)
+   yacc.py: 445:Action : Shift and goto state 14
+   yacc.py: 410:
+   yacc.py: 411:State  : 14
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Variable COMMA DOUBLE . LexToken(ID,'y',1,24)
+   yacc.py: 471:Action : Reduce rule [Type -> DOUBLE] with ['double'] and goto state 35
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 35
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Variable COMMA Type . LexToken(ID,'y',1,24)
+   yacc.py: 445:Action : Shift and goto state 58
+   yacc.py: 410:
+   yacc.py: 411:State  : 58
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Variable COMMA Type ID . LexToken(RIGHTPAREN,')',1,25)
+   yacc.py: 471:Action : Reduce rule [Variable -> Type ID] with [None,'y'] and goto state 39
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 39
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Variable COMMA Variable . LexToken(RIGHTPAREN,')',1,25)
+   yacc.py: 471:Action : Reduce rule [Formals -> Variable] with [None] and goto state 117
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 117
+   yacc.py: 430:Defaulted state 117: Reduce using 22
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Variable COMMA Formals . LexToken(RIGHTPAREN,')',1,25)
+   yacc.py: 471:Action : Reduce rule [Formals -> Variable COMMA Formals] with [None,',',None] and goto state 42
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 42
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals . LexToken(RIGHTPAREN,')',1,25)
+   yacc.py: 445:Action : Shift and goto state 66
+   yacc.py: 410:
+   yacc.py: 411:State  : 66
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN . LexToken(LEFTBRACE,'{',1,27)
+   yacc.py: 445:Action : Shift and goto state 62
+   yacc.py: 410:
+   yacc.py: 411:State  : 62
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE . LexToken(ID,'front',1,29)
+   yacc.py: 445:Action : Shift and goto state 94
+   yacc.py: 410:
+   yacc.py: 411:State  : 94
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE ID . LexToken(ASSIGNOP,'=',1,35)
+   yacc.py: 471:Action : Reduce rule [LValue -> ID] with ['front'] and goto state 95
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 95
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE LValue . LexToken(ASSIGNOP,'=',1,35)
+   yacc.py: 445:Action : Shift and goto state 155
+   yacc.py: 410:
+   yacc.py: 411:State  : 155
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE LValue ASSIGNOP . LexToken(ID,'in',1,37)
+   yacc.py: 445:Action : Shift and goto state 131
+   yacc.py: 410:
+   yacc.py: 411:State  : 131
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE LValue ASSIGNOP ID . LexToken(PERIOD,'.',1,39)
+   yacc.py: 445:Action : Shift and goto state 153
+   yacc.py: 410:
+   yacc.py: 411:State  : 153
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE LValue ASSIGNOP ID PERIOD . LexToken(ID,'nextLine',1,40)
+   yacc.py: 445:Action : Shift and goto state 186
+   yacc.py: 410:
+   yacc.py: 411:State  : 186
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE LValue ASSIGNOP ID PERIOD ID . LexToken(LEFTPAREN,'(',1,48)
+   yacc.py: 445:Action : Shift and goto state 213
+   yacc.py: 410:
+   yacc.py: 411:State  : 213
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE LValue ASSIGNOP ID PERIOD ID LEFTPAREN . LexToken(RIGHTPAREN,')',1,49)
+   yacc.py: 445:Action : Shift and goto state 229
+   yacc.py: 410:
+   yacc.py: 411:State  : 229
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE LValue ASSIGNOP ID PERIOD ID LEFTPAREN RIGHTPAREN . LexToken(SEMICOLON,';',1,50)
+   yacc.py: 471:Action : Reduce rule [Call -> ID PERIOD ID LEFTPAREN RIGHTPAREN] with ['in','.','nextLine','(',')'] and goto state 98
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 98
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE LValue ASSIGNOP Call . LexToken(SEMICOLON,';',1,50)
+   yacc.py: 471:Action : Reduce rule [Expression -> Call] with [None] and goto state 191
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 191
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE LValue ASSIGNOP Expression . LexToken(SEMICOLON,';',1,50)
+   yacc.py: 471:Action : Reduce rule [Expression -> LValue ASSIGNOP Expression] with [None,'=',None] and goto state 86
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 86
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE Expression . LexToken(SEMICOLON,';',1,50)
+   yacc.py: 445:Action : Shift and goto state 135
+   yacc.py: 410:
+   yacc.py: 411:State  : 135
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE Expression SEMICOLON . LexToken(RIGHTBRACE,'}',1,52)
+   yacc.py: 471:Action : Reduce rule [Statement -> Expression SEMICOLON] with [None,';'] and goto state 84
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 84
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE Statement . LexToken(RIGHTBRACE,'}',1,52)
+   yacc.py: 471:Action : Reduce rule [Statements -> Statement] with [None] and goto state 81
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 81
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE Statements . LexToken(RIGHTBRACE,'}',1,52)
+   yacc.py: 445:Action : Shift and goto state 132
+   yacc.py: 410:
+   yacc.py: 411:State  : 132
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN LEFTBRACE Statements RIGHTBRACE . $end
+   yacc.py: 471:Action : Reduce rule [StatementBlock -> LEFTBRACE Statements RIGHTBRACE] with ['{',None,'}'] and goto state 119
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 119
+   yacc.py: 435:Stack  : VOID ID LEFTPAREN Formals RIGHTPAREN StatementBlock . $end
+   yacc.py: 471:Action : Reduce rule [FunctionDeclaration -> VOID ID LEFTPAREN Formals RIGHTPAREN StatementBlock] with ['void','f','(',None,')',None] and goto state 4
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 4
+   yacc.py: 435:Stack  : FunctionDeclaration . $end
+   yacc.py: 471:Action : Reduce rule [Declaration -> FunctionDeclaration] with [None] and goto state 2
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 2
+   yacc.py: 435:Stack  : Declaration . $end
+   yacc.py: 471:Action : Reduce rule [Program -> Declaration] with [None] and goto state 1
+   yacc.py: 506:Result : <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 410:
+   yacc.py: 411:State  : 1
+   yacc.py: 435:Stack  : Program . $end
+   yacc.py: 571:Done   : Returning <NoneType @ 0x5617c6e29dc0> (None)
+   yacc.py: 572:PLY: PARSE DEBUG END

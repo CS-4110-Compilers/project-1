@@ -317,13 +317,13 @@ if __name__ == '__main__':
     input_string = "void f(double x, double y) { front = in.nextLine(); }"
 
     # # when generating log file change debug to log
-    # debug_info = parser.parse(input_string, lexer, debug=log)
+    debug_info = parser.parse(input_string, lexer, debug=log)
 
     # use code below to parse a txt file,replace
     # sample_input.txt with the name of the file
-    file = open("toy_program.txt", "r")
-    if file.mode == 'r':
-        debug_info = parser.parse(file.read(), lexer, debug=log)
+    # file = open("toy_program.txt", "r")
+    # if file.mode == 'r':
+    #     debug_info = parser.parse(file.read(), lexer, debug=log)
 
     # # create file to store debug output for future/further processing
     # with open('debug_data.txt','w',encoding='utf-8') as f:

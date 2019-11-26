@@ -1,2 +1,23 @@
-# project-1
- implement a lexical analyzer for a simple object-oriented programming language called Toy. Your program should be able to (1) translate any input Toy program into a sequence of tokens, and (2) create a symbol table using the trie structure for all keywords and user-defined identifiers.
+# Project 2 
+implement a lexical analyzer for a simple object-oriented programming language called Toy. Your program should be able to (1) translate any input Toy program into a sequence of tokens, and (2) create a symbol table using the trie structure for all keywords and user-defined identifiers.
+
+# How to Run 
+
+1. Open Project Folder 
+2. To input test code open toy_program.txt paste or type test code and save 
+
+# If Using IDLE 
+Right click parser.py then click Run -> Run Module 
+
+# If Using PyCharm 
+Click on Green Arrow next 'if __name__ == '__main__':' statement 
+
+# If using Terminal 
+cd into project directory and then run 'python parser.py' (if usng python3 or a variance using python3 parser.out)
+
+# For any other IDE's 
+Please refer to the user manual for your specific IDE. In most cases you can run parser.py via selection menu for project 
+
+# Output file 
+'output.csv' will be generated in same directory in which parser.py is located. The file can be opened in any spreadsheet reader such as excel, numbers, google sheets etc. Or via notepad (windows) or TextEdit (MacOS) 
+

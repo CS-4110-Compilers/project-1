@@ -350,16 +350,15 @@ if __name__ == '__main__':
     # Build the parser
     parser = yacc.yacc(debug=True, debuglog=log)
 
-    input_string = 'void f(double x, double y) { }'
-
-    # # when generating log file change debug to log
-    debug_info = parser.parse(input_string, lexer, debug=log)
+    # input_string = 'int i = 1;'
+    # # # when generating log file change debug to log
+    # debug_info = parser.parse(input_string, lexer, debug=log)
 
     # use code below to parse a txt file,replace
     # sample_input.txt with the name of the file
-    # file = open("toy_program.txt", "r")
-    # if file.mode == 'r':
-    #     debug_info = parser.parse(file.read(), lexer, debug=log)
+    file = open("toy_program.txt", "r")
+    if file.mode == 'r':
+        debug_info = parser.parse(file.read(), lexer, debug=log)
 
     # ---------- beginning of output processing ------------------ #
     buffer = []

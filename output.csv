@@ -85,7 +85,7 @@ Stack,Action
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations . LexToken(PRINTLN,'println',1,204)", Shift and goto state 111
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN . LexToken(LEFTPAREN,'(',1,212)", Shift and goto state 169
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN . LexToken(STRINGCONSTANT,'""factorial of 10 is""',1,213)", Shift and goto state 113
-" Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN STRINGCONSTANT . LexToken(COMMA,',',1,233)", Reduce rule [Constant -> STRINGCONSTANT] with [<str @ 0x7f63a2965a30>] and goto state 96
+" Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN STRINGCONSTANT . LexToken(COMMA,',',1,233)", Reduce rule [Constant -> STRINGCONSTANT] with [<str @ 0x7fe75593aa08>] and goto state 96
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Constant . LexToken(COMMA,',',1,233)", Reduce rule [Expression -> Constant] with [None] and goto state 190
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression . LexToken(COMMA,',',1,233)", Shift and goto state 215
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression COMMA . LexToken(ID,'fact',1,235)", Shift and goto state 131
@@ -100,7 +100,7 @@ Stack,Action
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression COMMA Call . LexToken(COMMA,',',1,244)", Reduce rule [Expression -> Call] with [None] and goto state 190
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression COMMA Expression . LexToken(COMMA,',',1,244)", Shift and goto state 215
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression COMMA Expression COMMA . LexToken(STRINGCONSTANT,'""from the recursive function""',1,246)", Shift and goto state 113
-" Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression COMMA Expression COMMA STRINGCONSTANT . LexToken(RIGHTPAREN,')',1,275)", Reduce rule [Constant -> STRINGCONSTANT] with [<str @ 0x7f63a2c9c580>] and goto state 96
+" Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression COMMA Expression COMMA STRINGCONSTANT . LexToken(RIGHTPAREN,')',1,275)", Reduce rule [Constant -> STRINGCONSTANT] with [<str @ 0x7fe755ece2b0>] and goto state 96
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression COMMA Expression COMMA Constant . LexToken(RIGHTPAREN,')',1,275)", Reduce rule [Expression -> Constant] with [None] and goto state 190
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression COMMA Expression COMMA Expression . LexToken(RIGHTPAREN,')',1,275)", Reduce rule [ExpressionList -> Expression] with [None] and goto state 230
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations PRINTLN LEFTPAREN Expression COMMA Expression COMMA ExpressionList . LexToken(RIGHTPAREN,')',1,275)"," Reduce rule [ExpressionList -> Expression COMMA ExpressionList] with [None,',',None] and goto state 230"
@@ -182,7 +182,7 @@ Stack,Action
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations Statement Statement Statement Statement . LexToken(PRINTLN,'println',1,347)", Shift and goto state 111
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations Statement Statement Statement Statement PRINTLN . LexToken(LEFTPAREN,'(',1,355)", Shift and goto state 169
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations Statement Statement Statement Statement PRINTLN LEFTPAREN . LexToken(STRINGCONSTANT,'""iterative result of 10! is ""',1,356)", Shift and goto state 113
-" Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations Statement Statement Statement Statement PRINTLN LEFTPAREN STRINGCONSTANT . LexToken(COMMA,',',1,385)", Reduce rule [Constant -> STRINGCONSTANT] with [<str @ 0x7f63a2c9c580>] and goto state 96
+" Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations Statement Statement Statement Statement PRINTLN LEFTPAREN STRINGCONSTANT . LexToken(COMMA,',',1,385)", Reduce rule [Constant -> STRINGCONSTANT] with [<str @ 0x7fe755ece2b0>] and goto state 96
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations Statement Statement Statement Statement PRINTLN LEFTPAREN Constant . LexToken(COMMA,',',1,385)", Reduce rule [Expression -> Constant] with [None] and goto state 190
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations Statement Statement Statement Statement PRINTLN LEFTPAREN Expression . LexToken(COMMA,',',1,385)", Shift and goto state 215
 " Declaration VOID ID LEFTPAREN RIGHTPAREN LEFTBRACE VaribleDeclarations Statement Statement Statement Statement PRINTLN LEFTPAREN Expression COMMA . LexToken(ID,'total',1,387)", Shift and goto state 131

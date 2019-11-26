@@ -1,8 +1,10 @@
 # Project 2 
 implement a lexical analyzer for a simple object-oriented programming language called Toy. Your program should be able to (1) translate any input Toy program into a sequence of tokens, and (2) create a symbol table using the trie structure for all keywords and user-defined identifiers.
 
-# How to Run 
+# Software
+To runs this program, python 3.x is required. PLY version 3.11 libraries, yacc and lex were added to the project folder.
 
+# How to Run
 1. Open Project Folder 
 2. To input test code open toy_program.txt paste or type test code and save
 3. Run parser.py
@@ -11,7 +13,7 @@ implement a lexical analyzer for a simple object-oriented programming language c
 Right click parser.py then click Run -> Run Module 
 
 # If Using PyCharm 
-Click on Green Arrow next 'if __name__ == '__main__':' statement 
+Click on Green Arrow
 
 # If using Terminal 
 cd into project directory and then run 'python3 parser.py'

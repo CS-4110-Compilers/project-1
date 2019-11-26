@@ -4,7 +4,8 @@ implement a lexical analyzer for a simple object-oriented programming language c
 # How to Run 
 
 1. Open Project Folder 
-2. To input test code open toy_program.txt paste or type test code and save 
+2. To input test code open toy_program.txt paste or type test code and save
+3. Run parser.py
 
 # If Using IDLE 
 Right click parser.py then click Run -> Run Module 
@@ -13,7 +14,7 @@ Right click parser.py then click Run -> Run Module
 Click on Green Arrow next 'if __name__ == '__main__':' statement 
 
 # If using Terminal 
-cd into project directory and then run 'python parser.py' (if usng python3 or a variance using python3 parser.out)
+cd into project directory and then run 'python3 parser.py'
 
 # For any other IDE's 
 Please refer to the user manual for your specific IDE. In most cases you can run parser.py via selection menu for project 

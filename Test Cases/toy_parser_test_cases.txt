@@ -1,0 +1,243 @@
+
+// Case 1 
+// Expected Outcome: no error
+ 
+void f(double x, double y) { }
+
+
+// Case 2 
+// Expected Outcome: error
+// Reason: varaibles cannot be initialized in variable declaration
+
+int i = 1;
+
+
+// Case 3 
+// Expected Outcome: error
+// Reason: 5.times(4) is not a valid expression
+
+void main() 
+{
+	result = 5.times(4);
+}
+
+
+// Case 4
+// Expected Outcome: no error
+
+void main() 
+{
+	front = in.nextLine();
+}
+
+
+// Case 5
+// Expected Outcome: no error
+
+void main() 
+{
+	front = in.nextLine;
+}
+
+
+// Case 6
+// Expected Outcome: no error
+
+int[][][] super;
+
+
+// Case 7 
+// Expected Outcome: error
+// Reason: statements are not allowed outside of functions 
+
+a[3][4.5][b] = result = x + y + z;
+
+
+// Case 8
+// Expected Outcome: error
+// Reason: for statement requires an expression between the semicolons
+
+void main() 
+{
+	for ( ; ; ) x = 1;
+}
+
+
+// Case 9
+// Expected Outcome: error
+// Reason: variable declarations are not allowed after statements in a statement block
+
+void main() 
+{
+	if (h>w) g=h;
+	else h=g;
+	double a;
+}
+
+
+// Case 10
+// Expected Outcome: no error
+
+class myClass
+{
+	boolean b;
+	userDefinedClassType f(){}
+	double d;
+	string g(){}
+}
+
+
+// Case 11
+// Expected Outcome: error
+// Reason: class declarations are not allowed in functions
+
+int f() {
+	class A {
+		string lastName;
+		string firstName; }
+}
+
+
+// Case 12
+// Expected Outcome: error
+// Reason: this.oneInt=3; is not a valid expression
+
+class One {
+	int oneInt;
+	double f() { this.oneInt=3; }
+}
+
+// Case 13
+// Expected Outcome: error
+// Reason: statements are not allowed outside of functions
+
+int fact (int x) {
+// recursive factorial function
+	if (x>1) return x * fact(x-1);
+	else return 1;
+}
+void main () {
+/* Fall Semester 2019
+CS 4110 compiler project #1
+A lexical analyzer */
+	int x;
+	int total;
+	println ("factorial of 10 is", fact (10), "from the recursive function");
+	total = 1; x = 1;
+	for ( ; x<=10; ) { total = total * x; x = x + 1; }
+	println ("iterative result of 10! is ", total);
+}
+class CS4110 {
+	int Funny;
+	double funny;
+	boolean flag;
+	string s;
+	int [] a;
+	flag = true;
+	Funny = 0X89aB; funny = 123456E+7;
+	s = "hello world";
+	while (x = (Funny/10) <0) println (s, " have fun !");
+	a = newarray (20, int);
+}
+
+
+// Case 14
+// Expected Outcome: error
+// Reason: statements are not allowed outside of functions
+
+int fact (int x) {
+// recursive factorial function
+	if (x>1) return x * fact(x-1);
+	else return 1;
+}
+void main () {
+/* Fall Semester 2019
+CS 4110 compiler project #1
+A lexical analyzer */
+	int x;
+	int total;
+	println ("factorial of 10 is", fact (10), "from the recursive function");
+	total = 1; x = 1;
+	for ( ; x<=10; ) { total = total * x; x = x + 1; }
+	println ("iterative result of 10! is ", total);
+}
+class CS4110 {
+	int Funny;
+	double funny;
+	boolean flag;
+	string s;
+	int [] a;
+	flag = true;
+	Funny = 0X89aB; funny = 123456.0E+7;;
+	s = "hello world";
+	while (x = (Funny/10) <0) println (s, " have fun !");
+	a = newarray (20, int);
+}
+
+
+// Case 15
+// Expected Outcome: no error
+
+interface crab 
+{ 
+	// function that returns a myClass array object
+	myClass [] myClassArrayFunction(int i, string s); 
+	void myVoidFunction(myClass [] myClassArray); 
+}
+
+
+// Case 16
+// Expected Outcome: no error
+
+class Zoo extends AnimalKingdom implements a, b, c
+{
+	boolean isGorilla( Animal animal)
+	{
+		if( animal == gorilla ) return true;
+		else return false;
+	}
+}
+
+
+// Case 17
+// Expected Outcome: no error
+
+void printExpressions(int i)
+{
+	if( i == 0)
+	{
+		while(true)
+			break;
+		println( "expresion: ",a[i] = this);
+	}
+	else if( i == 1)
+	{
+		array = newarray(20, myType);
+		println( "expresion: ", array.getInfo(i));
+	}
+	else
+		println( "expresion: ", array.getInfo(i));
+}
+
+
+// Case 18
+// Expected Outcome: error
+// Reason: interface declarations cannot be made in functions
+
+int badSyntax() 
+{
+	interface crab 
+	{ 
+		void a();
+	}	
+}
+
+
+// Case 19
+// Expected Outcome: error
+// Reason: class declarations cannot be made in interfaces
+
+interface crab 
+{ 
+	class a { int a; }
+}	

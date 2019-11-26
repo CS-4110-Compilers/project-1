@@ -21,6 +21,6 @@ cd into project directory and then run 'python3 parser.py'
 # For any other IDE's 
 Please refer to the user manual for your specific IDE. In most cases you can run parser.py via selection menu for project 
 
-# Output file 
-'output.csv' will be generated in same directory in which parser.py is located. The file can be opened in any spreadsheet reader such as excel, numbers, google sheets etc. Or via notepad (windows) or TextEdit (MacOS) 
+# Output files
+'output.csv' will be generated showing the parsing actions for the given input in toy_program.txt. The file can be opened in any spreadsheet reader such as excel, numbers, google sheets etc. Or via notepad (windows) or TextEdit (MacOS). 'parser.out' will also be generated containing the tables used for parsing. All other output files can be ignored. All files will be generated in the same directory in which parser.py is located.
 
